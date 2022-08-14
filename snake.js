@@ -137,6 +137,7 @@ function checkApple() {
     let newy = Math.floor((Math.random() * 29) + 1);
     apple.x=newx*10;
     apple.y=newy*10;
+    snake.size+=1;
 }
 
 
