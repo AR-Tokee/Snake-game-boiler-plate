@@ -43,11 +43,11 @@ function init() {
   ).checked;
   snakeBodyDisappear = document.getElementById("snake-body-disappear").checked;
 
-  if (circularWay) {
-    // write the  code here
-  }
+  
   if (killedByHittingItself) {
+
     // write the  code here
+
   }
   if (snakeBodyDisappear) {
     // write the  code here
@@ -219,6 +219,28 @@ function gameCycle() {
     checkCollision();
     move();
     doDrawing();
+
+    if (circularWay) {
+        // write the  code here
+        if(snake.y[0]==0 && upDirection)
+        {
+            snake.y[0]=290;
+        }
+        if(snake.y[0]==290 && downDirection)
+        {
+            snake.y[0]=0;
+        }
+        if(snake.x[0]==0 && leftDirection)
+        {
+            snake.x[0]=290;
+        }
+        if(snake.x[0]==290 && rightDirection)
+        {
+            snake.x[0]=0;
+        }
+
+      }
+
     setTimeout("gameCycle()", DELAY);
   }
 }
