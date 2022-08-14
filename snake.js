@@ -25,7 +25,10 @@ let upDirection = false;
 let downDirection = false;
 let inGame = true;
 
-const DELAY = 140;
+const DELAY = 240;
+
+// changed 140 to 240 for testing
+
 const MAX_RAND = 29;
 const CELL_SIZE = 10;
 const CANVAS_WIDTH = 300;
@@ -44,14 +47,7 @@ function init() {
   snakeBodyDisappear = document.getElementById("snake-body-disappear").checked;
 
   
-  if (killedByHittingItself) {
-
-    // write the  code here
-
-  }
-  if (snakeBodyDisappear) {
-    // write the  code here
-  }
+  
 
   canvas = document.getElementById("myCanvas");
   canvasContext = canvas.getContext("2d");
@@ -216,29 +212,52 @@ function move() {
 function gameCycle() {
   if (inGame) {
     checkApple();
-    checkCollision();
-    move();
-    doDrawing();
-
+    if(!circularWay){
+       checkCollision(); 
+    }
     if (circularWay) {
         // write the  code here
-        if(snake.y[0]==0 && upDirection)
+        if(snake.y[0]<0 && upDirection)
         {
-            snake.y[0]=290;
+            snake.y[0]=300;
         }
-        if(snake.y[0]==290 && downDirection)
+        if(snake.y[0]>=300 && downDirection)
         {
             snake.y[0]=0;
         }
-        if(snake.x[0]==0 && leftDirection)
+        if(snake.x[0]<0 && leftDirection)
         {
-            snake.x[0]=290;
+            snake.x[0]=300;
         }
-        if(snake.x[0]==290 && rightDirection)
+        if(snake.x[0]>=300 && rightDirection)
         {
             snake.x[0]=0;
         }
 
+      }
+    
+    move();
+    doDrawing();
+
+   
+
+      if (killedByHittingItself) {
+
+        for (let z = 1; z < snake.size; z++) {
+            if(snake.x[0]==snake.x[z] && snake.y[0]==snake.y[z]){
+                gameOver();
+
+               return;git
+            }
+            
+          }
+
+
+        
+    
+      }
+      if (snakeBodyDisappear) {
+        // write the  code here
       }
 
     setTimeout("gameCycle()", DELAY);
