@@ -25,7 +25,7 @@ let upDirection = false;
 let downDirection = false;
 let inGame = true;
 
-const DELAY = 240;
+const DELAY = 140;
 
 // changed 140 to 240 for testing
 
@@ -46,7 +46,6 @@ function init() {
   ).checked;
   snakeBodyDisappear = document.getElementById("snake-body-disappear").checked;
 
-  
   
 
   canvas = document.getElementById("myCanvas");
@@ -83,8 +82,13 @@ function doDrawing() {
 
 function createInitialSnakePosition() {
   for (let z = 0; z < snake.size; z++) {
-    snake.x[z] = 50 - z * CELL_SIZE;
-    snake.y[z] = 50;
+
+    let snakex = Math.floor((Math.random() * 20git) + 1)+3;
+    let snakey = Math.floor((Math.random() * 25) + 1)+3;
+
+
+    snake.x[z] = (snakex - z) * CELL_SIZE;
+    snake.y[z] = snakey*CELL_SIZE;
   }
 }
 
@@ -128,6 +132,9 @@ function locateApple() {
 function checkApple() {
   // You have to check here whether the apple is eaten by the snake or not
   if(apple.x==snake.x[0] && apple.y==snake.y[0]){
+    score++;
+
+    document.getElementById("score").value = score;
 
     let newx = Math.floor((Math.random() * 29) + 1);
     let newy = Math.floor((Math.random() * 29) + 1);
@@ -247,7 +254,7 @@ function gameCycle() {
             if(snake.x[0]==snake.x[z] && snake.y[0]==snake.y[z]){
                 gameOver();
 
-               return;git
+               return;
             }
             
           }
